@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrazas de Bel Air - Portal Vecinos</title>
+    <meta name="description" content="Portal informativo de la comunidad de vecinos Terrazas de Bel Air">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Iconos para diferentes dispositivos -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://via.placeholder.com/192x192/667eea/ffffff?text=TBA">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192x192/667eea/ffffff?text=TBA">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sistema de notificaciones -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Acceso de Vecinos</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="vivienda">Número de Vivienda:</label>
+                    <select id="vivienda" required>
+                        <option value="">Selecciona tu vivienda</option>
+                        <option value="1A">1A</option>
+                        <option value="1B">1B</option>
+                        <option value="1C">1C</option>
+                        <option value="2A">2A</option>
+                        <option value="2B">2B</option>
+                        <option value="2C">2C</option>
+                        <option value="3A">3A</option>
+                        <option value="3B">3B</option>
+                        <option value="4A">4A</option>
+                        <option value="4B">4B</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" required placeholder="Introduce tu contraseña">
+                </div>
+                <button type="submit" class="btn-primary">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1><i class="fas fa-home"></i> Terrazas de Bel Air</h1>
+                    <p class="subtitle">Portal Informativo de Vecinos</p>
+                </div>
+                <div class="header-right">
+                    <button id="language-btn" class="header-btn" title="Cambiar idioma">
+                        <i class="fas fa-globe"></i>
+                        <span id="current-lang">ES</span>
+                    </button>
+                    <button id="notifications-btn" class="header-btn">
+                        <i class="fas fa-bell"></i>
+                        <span id="notification-count" class="notification-badge">3</span>
+                    </button>
+                    <button id="login-btn" class="header-btn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <button class="nav-btn active" data-section="inicio">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </button>
+            <button class="nav-btn" data-section="mejoras">
+                <i class="fas fa-tools"></i>
+                <span>Mejoras</span>
+            </button>
+            <button class="nav-btn" data-section="mantenimiento">
+                <i class="fas fa-wrench"></i>
+                <span>Mantenimiento</span>
+            </button>
+            <button class="nav-btn" data-section="deudores">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Deudores</span>
+            </button>
+            <button class="nav-btn" data-section="actas">
+                <i class="fas fa-file-alt"></i>
+                <span>Actas</span>
+            </button>
+            <button class="nav-btn" data-section="galeria">
+                <i class="fas fa-images"></i>
+                <span>Galería</span>
+            </button>
+            <button class="nav-btn" data-section="sugerencias">
+                <i class="fas fa-comment-dots"></i>
+                <span>Sugerencias</span>
+            </button>
+            <button class="nav-btn" data-section="documentos">
+                <i class="fas fa-folder"></i>
+                <span>Documentos</span>
+            </button>
+            <button class="nav-btn" data-section="contactos">
+                <i class="fas fa-address-book"></i>
+                <span>Contactos</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <!-- Sección Inicio -->
+            <section id="inicio" class="section active">
+                <div class="welcome-card">
+                    <h2>Bienvenido a tu Comunidad</h2>
+                    <p>Mantente informado sobre todas las novedades y gestiones de nuestra comunidad de vecinos.</p>
+                </div>
+                
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>52</h3>
+                        <p>Vecinos</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-building"></i>
+                        <h3>26</h3>
+                        <p>Viviendas</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar"></i>
+                        <h3>4</h3>
+                        <p>Reuniones este año</p>
+                    </div>
+                </div>
+
+                <div class="recent-updates">
+                    <h3>Últimas Actualizaciones</h3>
+                    <div class="update-item">
+                        <div class="update-icon">
+                            <i class="fas fa-paint-roller"></i>
+                        </div>
+                        <div class="update-content">
+                            <h4>Pintura del portal</h4>
+                            <p>Se ha completado la pintura del portal principal</p>
+                            <span class="update-date">Hace 2 días</span>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="update-content">
+                            <h4>Cambio a LED</h4>
+                            <p>Instalación de luces LED en zonas comunes</p>
+                            <span class="update-date">Hace 1 semana</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Mejoras -->
+            <section id="mejoras" class="section">
+                <h2>Mejoras de la Comunidad</h2>
+                
+                <div class="improvement-card">
+                    <div class="improvement-header">
+                        <h3>Renovación del Ascensor</h3>
+                        <span class="status completed">Completado</span>
+                    </div>
+                    <p>Modernización completa del sistema de ascensores con nueva tecnología y mayor eficiencia energética.</p>
+                    <div class="improvement-details">
+                        <span><i class="fas fa-calendar"></i> Finalizado: Octubre 2024</span>
+                        <span><i class="fas fa-euro-sign"></i> Coste: €15,000</span>
+                    </div>
+                </div>
+
+                <div class="improvement-card">
+                    <div class="improvement-header">
+                        <h3>Jardín Comunitario</h3>
+                        <span class="status in-progress">En Progreso</span>
+                    </div>
+                    <p>Creación de un espacio verde en el patio interior con plantas autóctonas y sistema de riego automático.</p>
+                    <div class="improvement-details">
+                        <span><i class="fas fa-calendar"></i> Inicio: Noviembre 2024</span>
+                        <span><i class="fas fa-euro-sign"></i> Presupuesto: €8,500</span>
+                    </div>
+                </div>
+
+                <div class="improvement-card">
+                    <div class="improvement-header">
+                        <h3>Sistema de Seguridad</h3>
+                        <span class="status planned">Planificado</span>
+                    </div>
+                    <p>Instalación de cámaras de seguridad y sistema de videoportero digital.</p>
+                    <div class="improvement-details">
+                        <span><i class="fas fa-calendar"></i> Previsto: Enero 2025</span>
+                        <span><i class="fas fa-euro-sign"></i> Estimado: €12,000</span>
+                    </div>
+                </div>
+            </section>      
+      <!-- Sección Mantenimiento -->
+            <section id="mantenimiento" class="section">
+                <h2>Mantenimiento</h2>
+                
+                <div class="maintenance-schedule">
+                    <h3>Próximas Tareas</h3>
+                    
+                    <div class="maintenance-item urgent">
+                        <div class="maintenance-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="maintenance-content">
+                            <h4>Revisión Caldera</h4>
+                            <p>Mantenimiento anual obligatorio del sistema de calefacción</p>
+                            <span class="maintenance-date">15 Noviembre 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="maintenance-item normal">
+                        <div class="maintenance-icon">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <div class="maintenance-content">
+                            <h4>Limpieza Canalones</h4>
+                            <p>Limpieza y revisión de canalones y bajantes</p>
+                            <span class="maintenance-date">20 Noviembre 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="maintenance-item normal">
+                        <div class="maintenance-icon">
+                            <i class="fas fa-fire-extinguisher"></i>
+                        </div>
+                        <div class="maintenance-content">
+                            <h4>Revisión Extintores</h4>
+                            <p>Inspección anual de sistemas contra incendios</p>
+                            <span class="maintenance-date">30 Noviembre 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="maintenance-history">
+                    <h3>Historial Reciente</h3>
+                    <div class="history-item">
+                        <span class="history-date">28 Oct 2024</span>
+                        <span class="history-task">Limpieza escaleras - Completado</span>
+                    </div>
+                    <div class="history-item">
+                        <span class="history-date">25 Oct 2024</span>
+                        <span class="history-task">Reparación puerta garaje - Completado</span>
+                    </div>
+                    <div class="history-item">
+                        <span class="history-date">20 Oct 2024</span>
+                        <span class="history-task">Revisión ascensor - Completado</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Deudores -->
+            <section id="deudores" class="section">
+                <h2>Estado de Pagos</h2>
+                <div class="debtors-summary">
+                    <div class="summary-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>20</h3>
+                        <p>Al corriente</p>
+                    </div>
+                    <div class="summary-card warning">
+                        <i class="fas fa-clock"></i>
+                        <h3>3</h3>
+                        <p>Pendientes</p>
+                    </div>
+                    <div class="summary-card danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>1</h3>
+                        <p>Morosos</p>
+                    </div>
+                </div>
+
+                <div class="debtors-list">
+                    <h3>Situación Detallada</h3>
+                    <div class="debtor-item warning">
+                        <div class="debtor-info">
+                            <h4>Vivienda 2B</h4>
+                            <p>Cuota pendiente: Octubre 2024</p>
+                        </div>
+                        <div class="debt-amount">€120</div>
+                    </div>
+                    <div class="debtor-item warning">
+                        <div class="debtor-info">
+                            <h4>Vivienda 4A</h4>
+                            <p>Cuota pendiente: Octubre 2024</p>
+                        </div>
+                        <div class="debt-amount">€120</div>
+                    </div>
+                    <div class="debtor-item danger">
+                        <div class="debtor-info">
+                            <h4>Vivienda 1C</h4>
+                            <p>Cuotas pendientes: Agosto, Septiembre, Octubre 2024</p>
+                        </div>
+                        <div class="debt-amount">€360</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Actas -->
+            <section id="actas" class="section">
+                <h2>Actas de Reuniones</h2>
+                
+                <div class="meeting-item">
+                    <div class="meeting-header">
+                        <h3>Junta Ordinaria - Octubre 2024</h3>
+                        <span class="meeting-date">15 Octubre 2024</span>
+                    </div>
+                    <div class="meeting-summary">
+                        <p>Aprobación del presupuesto para mejoras del jardín comunitario y revisión de gastos del tercer trimestre.</p>
+                        <div class="meeting-actions">
+                            <button class="btn-secondary">
+                                <i class="fas fa-eye"></i> Ver Acta
+                            </button>
+                            <button class="btn-secondary">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meeting-item">
+                    <div class="meeting-header">
+                        <h3>Junta Ordinaria - 7 Marzo 2024</h3>
+                        <span class="meeting-date">7 Marzo 2024</span>
+                    </div>
+                    <div class="meeting-summary">
+                        <p>Acta de la junta ordinaria celebrada el 7 de marzo de 2024.</p>
+                        <div class="meeting-actions">
+                            <a href="https://drive.google.com/file/d/1eyY20iw8cQP_qNkXWkltlZkOwo1piPgm/view?usp=sharing" target="_blank" class="btn-secondary">
+                                <i class="fas fa-eye"></i> Ver Acta
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1eyY20iw8cQP_qNkXWkltlZkOwo1piPgm" class="btn-secondary">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meeting-item">
+                    <div class="meeting-header">
+                        <h3>Junta Ordinaria - Junio 2024</h3>
+                        <span class="meeting-date">10 Junio 2024</span>
+                    </div>
+                    <div class="meeting-summary">
+                        <p>Aprobación de cuentas anuales y elección del nuevo administrador de fincas.</p>
+                        <div class="meeting-actions">
+                            <button class="btn-secondary">
+                                <i class="fas fa-eye"></i> Ver Acta
+                            </button>
+                            <button class="btn-secondary">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Galería -->
+            <section id="galeria" class="section">
+                <h2>Galería de Mejoras</h2>
+                
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="completed">Completadas</button>
+                    <button class="filter-btn" data-filter="progress">En Progreso</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="completed">
+                        <img src="https://i.imgur.com/FJO6baT.jpg" alt="Ascensor renovado">
+                        <div class="gallery-overlay">
+                            <h4>Renovación del Ascensor</h4>
+                            <p>Octubre 2024</p>
+                            <button class="view-btn" onclick="openImageModal(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="completed">
+                        <img src="https://via.placeholder.com/300x200/28a745/ffffff?text=Portal+Pintado" alt="Portal pintado">
+                        <div class="gallery-overlay">
+                            <h4>Pintura del Portal</h4>
+                            <p>Octubre 2024</p>
+                            <button class="view-btn" onclick="openImageModal(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="completed">
+                        <img src="https://via.placeholder.com/300x200/17a2b8/ffffff?text=Luces+LED" alt="Luces LED">
+                        <div class="gallery-overlay">
+                            <h4>Instalación LED</h4>
+                            <p>Septiembre 2024</p>
+                            <button class="view-btn" onclick="openImageModal(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="progress">
+                        <img src="https://via.placeholder.com/300x200/ffc107/ffffff?text=Jardín+en+Progreso" alt="Jardín en construcción">
+                        <div class="gallery-overlay">
+                            <h4>Jardín Comunitario</h4>
+                            <p>En progreso</p>
+                            <button class="view-btn" onclick="openImageModal(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="progress">
+                        <img src="https://via.placeholder.com/300x200/6f42c1/ffffff?text=Cámaras+Seguridad" alt="Sistema de seguridad">
+                        <div class="gallery-overlay">
+                            <h4>Sistema de Seguridad</h4>
+                            <p>Planificado 2025</p>
+                            <button class="view-btn" onclick="openImageModal(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="completed">
+                        <img src="https://via.placeholder.com/300x200/dc3545/ffffff?text=Buzones+Nuevos" alt="Buzones renovados">
+                        <div class="gallery-overlay">
+                            <h4>Renovación Buzones</h4>
+                            <p>Agosto 2024</p>
+                            <button class="view-btn" onclick="openImageModal(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Sugerencias -->
+            <section id="sugerencias" class="section">
+                <h2>Sugerencias, Quejas y Consultas</h2>
+                
+                <div class="suggestions-form-card">
+                    <h3>📧 Contactar con el Administrador</h3>
+                    <form id="suggestions-form">
+                        <div class="form-group">
+                            <label for="resident-info">Tu vivienda:</label>
+                            <input type="text" id="resident-info" required placeholder="Ej: Vivienda 3A - Juan García">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-email">Tu email (opcional):</label>
+                            <input type="email" id="contact-email" placeholder="Para recibir respuesta del administrador">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="suggestion-type">Tipo:</label>
+                            <select id="suggestion-type" required>
+                                <option value="">Selecciona el tipo</option>
+                                <option value="sugerencia">Sugerencia</option>
+                                <option value="queja">Queja</option>
+                                <option value="incidencia">Incidencia</option>
+                                <option value="consulta">Consulta</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="suggestion-category">Categoría:</label>
+                            <select id="suggestion-category" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="mantenimiento">Mantenimiento</option>
+                                <option value="mejoras">Mejoras</option>
+                                <option value="seguridad">Seguridad</option>
+                                <option value="limpieza">Limpieza</option>
+                                <option value="ruidos">Ruidos</option>
+                                <option value="zonas-comunes">Zonas comunes</option>
+                                <option value="administracion">Administración</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="suggestion-title">Asunto:</label>
+                            <input type="text" id="suggestion-title" required placeholder="Ej: Problema con la iluminación del garaje">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="suggestion-description">Descripción detallada:</label>
+                            <textarea id="suggestion-description" rows="5" required placeholder="Describe tu sugerencia, queja o consulta con el mayor detalle posible..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="suggestion-priority">Urgencia:</label>
+                            <select id="suggestion-priority" required>
+                                <option value="baja">Baja - No es urgente</option>
+                                <option value="media" selected>Media - Importante</option>
+                                <option value="alta">Alta - Urgente</option>
+                                <option value="critica">Crítica - Muy urgente</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">📧 Enviar al Administrador</button>
+                    </form>
+                </div>
+
+                <div class="suggestions-list">
+                    <h3>Sugerencias Recientes</h3>
+                    
+                    <div class="suggestion-item">
+                        <div class="suggestion-header">
+                            <h4>Mejora en la iluminación del garaje</h4>
+                            <span class="priority-badge alta">Alta</span>
+                        </div>
+                        <p class="suggestion-meta">Por Vivienda 3B • Hace 2 días • Categoría: Mejoras</p>
+                        <p class="suggestion-text">Sería conveniente instalar más puntos de luz en el garaje, especialmente en las zonas más alejadas de la entrada.</p>
+                        <div class="suggestion-actions">
+                            <button class="btn-vote"><i class="fas fa-thumbs-up"></i> 8</button>
+                            <button class="btn-vote"><i class="fas fa-thumbs-down"></i> 1</button>
+                            <span class="suggestion-status pendiente">Pendiente</span>
+                        </div>
+                    </div>
+
+                    <div class="suggestion-item">
+                        <div class="suggestion-header">
+                            <h4>Instalación de dispensador de bolsas para mascotas</h4>
+                            <span class="priority-badge media">Media</span>
+                        </div>
+                        <p class="suggestion-meta">Por Vivienda 1A • Hace 5 días • Categoría: Otros</p>
+                        <p class="suggestion-text">Propongo instalar dispensadores de bolsas para mascotas en las zonas verdes comunes.</p>
+                        <div class="suggestion-actions">
+                            <button class="btn-vote"><i class="fas fa-thumbs-up"></i> 12</button>
+                            <button class="btn-vote"><i class="fas fa-thumbs-down"></i> 2</button>
+                            <span class="suggestion-status aprobada">Aprobada</span>
+                        </div>
+                    </div>
+
+                    <div class="suggestion-item">
+                        <div class="suggestion-header">
+                            <h4>Horario de silencio más estricto</h4>
+                            <span class="priority-badge baja">Baja</span>
+                        </div>
+                        <p class="suggestion-meta">Por Vivienda 2C • Hace 1 semana • Categoría: Otros</p>
+                        <p class="suggestion-text">Propongo ampliar el horario de silencio de 22:00 a 8:00 en lugar del actual de 23:00 a 7:00.</p>
+                        <div class="suggestion-actions">
+                            <button class="btn-vote"><i class="fas fa-thumbs-up"></i> 5</button>
+                            <button class="btn-vote"><i class="fas fa-thumbs-down"></i> 8</button>
+                            <span class="suggestion-status rechazada">Rechazada</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Documentos -->
+            <section id="documentos" class="section">
+                <h2>Documentos Importantes</h2>
+                
+                <div class="documents-categories">
+                    <div class="doc-category">
+                        <div class="doc-category-header">
+                            <i class="fas fa-gavel"></i>
+                            <h3>Documentos Legales</h3>
+                        </div>
+                        <div class="doc-list">
+                            <div class="doc-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="doc-info">
+                                    <h4>Estatutos de la Comunidad</h4>
+                                    <p>Última actualización: Enero 2024</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                            <div class="doc-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="doc-info">
+                                    <h4>Reglamento de Régimen Interior</h4>
+                                    <p>Última actualización: Marzo 2024</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                            <div class="doc-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="doc-info">
+                                    <h4>Póliza de Seguro del Edificio</h4>
+                                    <p>Vigencia: 2024-2025</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-category">
+                        <div class="doc-category-header">
+                            <i class="fas fa-calculator"></i>
+                            <h3>Documentos Económicos</h3>
+                        </div>
+                        <div class="doc-list">
+                            <div class="doc-item">
+                                <i class="fas fa-file-excel"></i>
+                                <div class="doc-info">
+                                    <h4>Presupuesto 2024</h4>
+                                    <p>Aprobado en Junta Ordinaria</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                            <div class="doc-item">
+                                <i class="fas fa-file-excel"></i>
+                                <div class="doc-info">
+                                    <h4>Cuentas Anuales 2023</h4>
+                                    <p>Auditadas y aprobadas</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                            <div class="doc-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="doc-info">
+                                    <h4>Estado de Deudas Octubre 2024</h4>
+                                    <p>Actualizado mensualmente</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-category">
+                        <div class="doc-category-header">
+                            <i class="fas fa-tools"></i>
+                            <h3>Documentos Técnicos</h3>
+                        </div>
+                        <div class="doc-list">
+                            <div class="doc-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="doc-info">
+                                    <h4>Certificado Energético</h4>
+                                    <p>Válido hasta: Diciembre 2025</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                            <div class="doc-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="doc-info">
+                                    <h4>ITE - Inspección Técnica</h4>
+                                    <p>Realizada: Septiembre 2024</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                            <div class="doc-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="doc-info">
+                                    <h4>Planos del Edificio</h4>
+                                    <p>Actualizados con reformas</p>
+                                </div>
+                                <button class="btn-download"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Contactos -->
+            <section id="contactos" class="section">
+                <h2>Contactos Útiles</h2>
+                
+                <div class="contacts-grid">
+                    <div class="contact-card emergency">
+                        <div class="contact-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Emergencias</h3>
+                        </div>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span class="contact-label">Bomberos:</span>
+                                <a href="tel:080" class="contact-value">080</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Policía:</span>
+                                <a href="tel:091" class="contact-value">091</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Emergencias:</span>
+                                <a href="tel:112" class="contact-value">112</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-header">
+                            <i class="fas fa-building"></i>
+                            <h3>Administración</h3>
+                        </div>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span class="contact-label">Administrador:</span>
+                                <a href="tel:+34952888888" class="contact-value">+34 952 88 88 88</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Email:</span>
+                                <a href="mailto:admin@micomunidad.es" class="contact-value">admin@micomunidad.es</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Horario:</span>
+                                <span class="contact-value">L-V: 9:00-17:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-header">
+                            <i class="fas fa-wrench"></i>
+                            <h3>Mantenimiento</h3>
+                        </div>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span class="contact-label">Fontanero:</span>
+                                <a href="tel:+34666111222" class="contact-value">+34 666 111 222</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Electricista:</span>
+                                <a href="tel:+34666333444" class="contact-value">+34 666 333 444</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Cerrajero:</span>
+                                <a href="tel:+34666555666" class="contact-value">+34 666 555 666</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-header">
+                            <i class="fas fa-broom"></i>
+                            <h3>Limpieza</h3>
+                        </div>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span class="contact-label">Empresa:</span>
+                                <span class="contact-value">Limpiezas Cusac</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Teléfono:</span>
+                                <a href="tel:+34666777888" class="contact-value">+34 666 777 888</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Horario:</span>
+                                <span class="contact-value">L-S: 7:00-15:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Seguridad</h3>
+                        </div>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span class="contact-label">Portero:</span>
+                                <a href="tel:+34000000000" class="contact-value">+34 000 000 000</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Alarmas:</span>
+                                <a href="tel:+34000000000" class="contact-value">+34 000 000 000</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Disponible:</span>
+                                <span class="contact-value">24/7</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-header">
+                            <i class="fas fa-users"></i>
+                            <h3>Junta Directiva</h3>
+                        </div>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span class="contact-label">Presidente:</span>
+                                <span class="contact-value">Jonatan Cusac el Rey (3A)</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Secretaria:</span>
+                                <span class="contact-value">María López (1B)</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Vocal:</span>
+                                <span class="contact-value">Pedro Martín (2C)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal para ver imágenes -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content image-modal-content">
+            <span class="close">&times;</span>
+            <img id="modal-image" src="" alt="">
+            <div id="modal-caption"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Comunidad de Vecinos. Todos los derechos reservados.</p>
+            <p>Administrador: <a href="tel:+34952888888">+34 952 88 88 88</a></p>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+        // Registrar Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('✅ Service Worker registrado:', registration.scope);
+                        
+                        // Mostrar botón de instalación
+                        showInstallPrompt();
+                    })
+                    .catch(function(error) {
+                        console.log('❌ Error registrando Service Worker:', error);
+                    });
+            });
+        }
+
+        // Manejar instalación de PWA
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('📱 PWA instalable detectada');
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallButton();
+        });
+
+        function showInstallButton() {
+            // Crear botón de instalación
+            const installBtn = document.createElement('button');
+            installBtn.textContent = '📱 Instalar App';
+            installBtn.className = 'install-btn';
+            installBtn.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #667eea;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 25px;
+                font-size: 14px;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                z-index: 1000;
+                animation: pulse 2s infinite;
+            `;
+            
+            installBtn.addEventListener('click', installApp);
+            document.body.appendChild(installBtn);
+            
+            // Añadir animación CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((result) => {
+                    if (result.outcome === 'accepted') {
+                        console.log('✅ PWA instalada');
+                        document.querySelector('.install-btn')?.remove();
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        function showInstallPrompt() {
+            // Mostrar notificación de que se puede instalar
+            setTimeout(() => {
+                if (window.showNotification) {
+                    showNotification('info', '📱 ¡Instala la App!', 'Puedes instalar esta web como una app en tu móvil');
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
