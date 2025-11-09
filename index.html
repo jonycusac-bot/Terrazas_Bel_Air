@@ -915,9 +915,6 @@
     </script>
 </body>
 </html>
-Actualizo texto principal
-Add file → Create new file
-admin/index.html
 <!doctype html>
 <html>
   <head>
@@ -928,41 +925,5 @@ admin/index.html
   <body>
   </body>
 </html>
-admin/config.yml
-backend:
-  name: github
-  repo: jonycusac-bot/Terrazas_Bel_Air
-  branch: main
+Reemplazado contenido de admin/index.html con Netlify CMS
 
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
-
-collections:
-  - name: "noticias"
-    label: "Noticias"
-    folder: "content/noticias"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Fecha", name: "date", widget: "datetime"}
-      - {label: "Contenido", name: "body", widget: "markdown"}
-
-  - name: "actas"
-    label: "Actas"
-    folder: "content/actas"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Fecha", name: "date", widget: "datetime"}
-      - {label: "Documento PDF", name: "file", widget: "file"}
-
-  - name: "avisos"
-    label: "Avisos y Comunicados"
-    folder: "content/avisos"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Texto", name: "body", widget: "markdown"}
