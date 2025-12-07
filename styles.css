@@ -693,17 +693,38 @@ body {
     }
     
     .nav-btn {
-        padding: 10px 6px;
-        min-width: 55px;
+        padding: 10px 4px;
+        min-width: 50px;
+        font-size: 0.65rem;
     }
     
     .nav-btn span {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+        line-height: 1.1;
+        display: block;
+        word-break: break-word;
+    }
+    
+    .nav-btn i {
+        font-size: 1rem;
+        margin-bottom: 2px;
     }
     
     .quick-stats {
         grid-template-columns: 1fr;
         gap: 10px;
+    }
+    
+    /* Navegación más compacta en móviles pequeños */
+    .nav .container {
+        gap: 2px;
+        padding: 0 8px;
+    }
+    
+    .nav-btn {
+        padding: 8px 3px;
+        min-width: 45px;
+        border-radius: 6px;
     }
     
     .debtors-summary {
